@@ -30,14 +30,14 @@ int main() {
         printf("Connection problem. Try again in 2 sec.\n");
         exit(1);
     }
-    printf("prima del receive\n");
+
     // Receive a string from the server
     recv(client_socket, buffer, sizeof(buffer), 0);
-    if(strcmp(buffer, "no") == 0) { 
+    if(strcmp(buffer, "Ciao")) { 
         printf("Received from Server: %s\n", buffer);
-    } else {
-          printf("Non ricevo niente");
     }
+
+        printf("Non faccio nulla");
 
     // Close the socket
     close(client_socket);
