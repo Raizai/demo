@@ -28,7 +28,7 @@ int main() {
     // Connect to the server
     while (connect(client_socket, serverSockAddrPtr, serverLen) < 0) {
         printf("Connection problem. Try again in 2 sec.\n");
-        exit(1);
+        sleep(2);
     }
     printf("prima del receive\n");
     // Receive a string from the server
@@ -36,7 +36,7 @@ int main() {
     if(strcmp(buffer, "no") == 0) { 
         printf("Received from Server: %s\n", buffer);
     } else {
-          printf("Non ricevo niente");
+          printf("Non ricevo niente\n");
     }
 
     // Close the socket

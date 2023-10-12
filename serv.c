@@ -60,10 +60,14 @@ int main() {
             // In child process
             close(server_socket); // Close the server socket in the child
             send(client_socket, buffer, strlen(buffer), 0);
-        } else {
+            exit(0);
+        } else if (pid > 0) {
+
             close(client_socket); // Close the client socket in the parent
+        } else {
+            perror("Error forking process");
         }
     }
-
+    close(server_socket);
     return 0;
 }

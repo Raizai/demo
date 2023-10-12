@@ -8,7 +8,7 @@
 #include <sys/socket.h>
 
 int main() {
-    int client_socket, serverLen, result;
+    int client_socket, serverLen, result, sock;
     struct sockaddr_un serverUNIXAddress;
     struct sockaddr *serverSockAddrPtr;
     char buffer[1024];
@@ -28,16 +28,18 @@ int main() {
     // Connect to the server
     while (connect(client_socket, serverSockAddrPtr, serverLen) < 0) {
         printf("Connection problem. Try again in 2 sec.\n");
-        exit(1);
+        sleep(2);
     }
 
     // Receive a string from the server
-    recv(client_socket, buffer, sizeof(buffer), 0);
+    //  while ( sock = recv(client_socket, &buffer, sizeof(buffer), 0) < 0)
+    //  ;
+    //  printf("buf %d\n ",sock );
     if(strcmp(buffer, "Ciao")) { 
         printf("Received from Server: %s\n", buffer);
+    } else {
+        printf("Non faccio nulla\n");
     }
-
-        printf("Non faccio nulla");
 
     // Close the socket
     close(client_socket);
